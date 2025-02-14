@@ -26,6 +26,9 @@ if ingredients_list:
 
     for fruit_chosen in ingredients_list:
         ingredients_string += f'{fruit_chosen} '
+        st.subheader(f'{fruit_chosen} Nutrition Information')
+        sf_res = rq.get(f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen}")
+        sf_df = st.dataframe(sf_res.json(), use_container_width=True)
 
 
     my_insert_stmt = f""" insert into smoothies.public.orders(ingredients, name_on_order)
@@ -37,7 +40,3 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success(f'Your Smoothie is ordered, {smoothie_name}!', icon="✅")
-
-sf_res = rq.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-# st.text(sf_res.json())
-sf_df = st.dataframe(sf_res.json(), use_container_width=True)
