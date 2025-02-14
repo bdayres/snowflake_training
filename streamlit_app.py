@@ -11,7 +11,7 @@ st.write(
 )
 
 sf_res = rq.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(sf_res)
+st.text(sf_res.json())
 
 cnx = st.connection('snowflake')
 session = cnx.session()
