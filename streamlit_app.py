@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import requests as rq
 from snowflake.snowpark.functions import col
 
 # Write directly to the app
@@ -9,6 +10,8 @@ st.write(
     """
 )
 
+sf_res = rq.get("https://my.smoothiefroot.com/api/fruits/watermelon")
+st.text(sf_res)
 
 cnx = st.connection('snowflake')
 session = cnx.session()
