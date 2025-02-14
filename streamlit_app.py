@@ -10,9 +10,6 @@ st.write(
     """
 )
 
-sf_res = rq.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(sf_res.json())
-
 cnx = st.connection('snowflake')
 session = cnx.session()
 
@@ -40,3 +37,7 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success(f'Your Smoothie is ordered, {smoothie_name}!', icon="✅")
+
+sf_res = rq.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+# st.text(sf_res.json())
+sf_df = st.dataframe(sf_res.json(), use_container_width=True)
