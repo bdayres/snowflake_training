@@ -10,7 +10,7 @@ st.write(
     """
 )
 
-sf_res = rq.get("https://my.smoothiefroot.com/api/fruits/watermelon")
+sf_res = rq.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 st.text(sf_res)
 
 cnx = st.connection('snowflake')
